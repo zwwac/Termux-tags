@@ -5,7 +5,11 @@ from termcolor import colored
 # Terminali temizler ve gerekli mesajı gösterir
 def clear_terminal():
     os.system('clear')  # clear komutunu çalıştırır
-    print("@zwwac")  # Üst köşede yazılacak kullanıcı adı
+    # Üst köşede büyük boyutta yazılacak kullanıcı adı
+    zwwac_art = pyfiglet.figlet_format("@zwwac")
+    terminal_width = os.get_terminal_size().columns
+    for line in zwwac_art.split("\n"):
+        print(line.rjust(terminal_width))
 
 # Menü seçeneklerini gösterir
 def display_menu():
