@@ -1,6 +1,6 @@
 # ASCII Art Creator
 
-Bu proje, kullanıcıya özel isim ve renk girerek terminalde ASCII art oluşturan bir Python scriptidir
+Bu proje, kullanıcıya özel isim, renk ve font girerek terminalde ASCII art oluşturan bir Python scriptidir
 
 
 ## Kurulum
@@ -24,7 +24,7 @@ touch ~/.hushlogin
 ```
 ### 6. ASCII Art'ı Başlangıçta Görüntüleyin
 ```sh
-echo 'cat ~/ascii-art-creator/ascii_art_output.txt' >> ~/.bashrc
+echo 'cat ~/Termux-tags/ascii_art_output.txt' >> ~/.bashrc
 ```
 ### Python Scriptini Çalıştırın
 ```sh
