@@ -1,21 +1,8 @@
 # Security Policy
 
-## Supported Versions
+## Bir Güvenlik Açığını Bildirme
+Termux-tag'da bir güvenlik açığını bulup bildirmek için zaman ayırdığınız için teşekkür ederiz!
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+Lütfen ayrıntıları kamuya açık sorun takip aracında yayınlamak yerine janewolfhard0011@gmail.com adresine e-posta ile göndermenizi rica ediyorum .
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
-
-## Reporting a Vulnerability
-
-Use this section to tell people how to report a vulnerability.
-
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+Bu güvenlik açığının mümkün olan en kısa sürede çözülmesi için sizinle birlikte çalışmaktan mutluluk duyarım ve bir sonraki sürümün yayın notlarında (eğer isterseniz!) sizden bahsedeceğim.
