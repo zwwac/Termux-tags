@@ -99,6 +99,9 @@ def main():
             break
         else:
             print(colored("Geçersiz seçenek! Lütfen tekrar deneyin.", 'red', attrs=['bold']))
+        # Eğer kullanıcı tekrar font seçmek isterse, mevcut fontu sıfırlayalım
+        if choice == "3":
+            font = "standard"
 
 if __name__ == "__main__":
     main()
