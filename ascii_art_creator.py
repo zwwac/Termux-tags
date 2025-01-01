@@ -5,8 +5,8 @@ from termcolor import colored
 # Instagram sayfası
 INSTAGRAM_URL = "https://www.instagram.com/zwwac/"
 
-# Mevcut fontlar
-FONTS = ["standard", "slant", "block", "big", "digital", "bubble", "lean"]
+# Mevcut tüm fontlar
+FONTS = pyfiglet.FigletFont.getFonts()
 
 # Terminali temizler ve gerekli mesajı gösterir
 def clear_terminal():
