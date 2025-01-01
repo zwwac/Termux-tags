@@ -9,7 +9,7 @@ Bu proje, kullanıcıya özel isim, renk ve font girerek terminalde ASCII art ol
 
 ## Kurulum
 
-### 2. Python'u Kurun
+### Python'u Kurun
 ```sh
 pkg install python
 ```
@@ -26,7 +26,7 @@ cd Termux-tags
 ```sh
 touch ~/.hushlogin
 ```
-### 6. ASCII Art'ı Başlangıçta Görüntüleyin
+### ASCII Art'ı Başlangıçta Görüntüleyin
 ```sh
 echo 'cat ~/Termux-tags/ascii_art_output.txt' >> ~/.bashrc
 ```
