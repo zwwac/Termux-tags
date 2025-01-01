@@ -13,3 +13,4 @@ git clone https://github.com/zwwac/Termux-tags
 
 pkg install python
 pip install pyfiglet termcolor
+python ascii_art_creator.py
