@@ -8,20 +8,32 @@ INSTAGRAM_URL = "https://www.instagram.com/zwwac/"
 # Mevcut tüm fontlar
 FONTS = pyfiglet.FigletFont.getFonts()
 
-# Mevcut arka plan renkleri ve temalar
-BACKGROUND_COLORS = ["black", "red", "green", "yellow", "blue", "magenta", "cyan", "white"]
-
 # Terminali temizler ve gerekli mesajı gösterir
 def clear_terminal():
     os.system('clear')
-    # Üst köşede büyük boyutta yazılacak kullanıcı adı
+    # Üst köşede büyük boyutta ASCII art yazısı
     zwac_art = """
-███████╗
-██╔════╝
-█████╗  
-██╔══╝  
-███████╗
-╚══════╝
+          .                                                      .
+        .n                   .                 .                  n.
+  .   .dP                  dP                   9b                 9b.    .
+ 4    qXb         .       dX                     Xb       .        dXp     t
+dX.    9Xb      .dXb    __                         __    dXb.     dXP     .Xb
+9XXb._       _.dXXXXb dXXXXbo.                 .odXXXXb dXXXXb._       _.dXXP
+ 9XXXXXXXXXXXXXXXXXXXVXXXXXXXXOo.           .oOXXXXXXXXVXXXXXXXXXXXXXXXXXXXP
+  `9XXXXXXXXXXXXXXXXXXXXX'~   ~`OOO8b   d8OOO'~   ~`XXXXXXXXXXXXXXXXXXXXXP'
+    `9XXXXXXXXXXXP' `9XX'   DIE    `98v8P'  HUMAN   `XXP' `9XXXXXXXXXXXP'
+        ~~~~~~~       9X.          .db|db.          .XP       ~~~~~~~
+                        )b.  .dbo.dP'`v'`9b.odb.  .dX(
+                      ,dXXXXXXXXXXXb     dXXXXXXXXXXXb.
+                     dXXXXXXXXXXXP'   .   `9XXXXXXXXXXXb
+                    dXXXXXXXXXXXXb   d|b   dXXXXXXXXXXXXb
+                    9XXb'   `XXXXXb.dX|Xb.dXXXXX'   `dXXP
+                     `'      9XXXXXX(   )XXXXXXP      `'
+                              XXXX X.`v'.X XXXX
+                              XP^X'`b   d'`X^XX
+                              X. 9  `   '  P )X
+                              `b  `       '  d'
+                               `             '
 """
     terminal_width = os.get_terminal_size().columns
     for line in zwac_art.split("\n"):
@@ -34,9 +46,8 @@ def display_menu():
     print(colored("1. İsim gir", 'yellow', attrs=['bold']))
     print(colored("2. Renk seç", 'yellow', attrs=['bold']))
     print(colored("3. Font seç", 'yellow', attrs=['bold']))
-    print(colored("4. Arka plan rengi seç", 'yellow', attrs=['bold']))
-    print(colored("5. ASCII art oluştur", 'yellow', attrs=['bold']))
-    print(colored("6. Çıkış", 'red', attrs=['bold']))
+    print(colored("4. ASCII art oluştur", 'yellow', attrs=['bold']))
+    print(colored("5. Çıkış", 'red', attrs=['bold']))
     print(colored("===============================", 'magenta', attrs=['bold']))
 
 # Kullanıcıdan isim alır
@@ -62,16 +73,6 @@ def get_font():
             return font
         print(colored("Geçersiz font! Lütfen tekrar seçin.", 'red', attrs=['bold']))
 
-# Kullanıcıdan arka plan rengi seçmesini ister
-def get_background_color():
-    print(colored("Mevcut arka plan renkleri: " + ", ".join(BACKGROUND_COLORS), 'cyan', attrs=['bold']))
-    while True:
-        bg_color = input(colored("Bir arka plan rengi seçin: ", 'cyan', attrs=['bold'])).strip().lower()
-        if bg_color in BACKGROUND_COLORS:
-            os.system(f"termux-style color {bg_color}")
-            return bg_color
-        print(colored("Geçersiz arka plan rengi! Lütfen tekrar seçin.", 'red', attrs=['bold']))
-
 # ASCII art oluşturur ve kalıcı olarak dosyaya yazar
 def create_ascii_art(name, color, font):
     ascii_art = pyfiglet.figlet_format(name, font=font)
@@ -84,10 +85,10 @@ def create_ascii_art(name, color, font):
 
 def main():
     clear_terminal()
-    name, color, font, bg_color = "", "", "standard", "black"
+    name, color, font = "", "", "standard"
     while True:
         display_menu()
-        choice = input(colored("Bir seçenek girin (1-6): ", 'cyan', attrs=['bold'])).strip()
+        choice = input(colored("Bir seçenek girin (1-5): ", 'cyan', attrs=['bold'])).strip()
         if choice == "1":
             name = get_name()
         elif choice == "2":
@@ -95,13 +96,11 @@ def main():
         elif choice == "3":
             font = get_font()
         elif choice == "4":
-            bg_color = get_background_color()
-        elif choice == "5":
             if name and color and font:
                 create_ascii_art(name, color, font)
             else:
-                print(colored("Lütfen önce isim, renk, font ve arka plan rengi girin.", 'red', attrs=['bold']))
-        elif choice == "6":
+                print(colored("Lütfen önce isim, renk ve font girin.", 'red', attrs=['bold']))
+        elif choice == "5":
             print(colored("Çıkılıyor...", 'red', attrs=['bold']))
             break
         else:
