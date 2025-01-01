@@ -10,8 +10,7 @@ FONTS = pyfiglet.FigletFont.getFonts()
 
 # Terminali temizler ve gerekli mesajı gösterir
 def clear_terminal():
-    os.system('clear')  # clear komutunu çalıştırır
-    # Üst köşede büyük boyutta yazılacak kullanıcı adı
+    os.system('clear')
     zwwac_art = pyfiglet.figlet_format("@zwwac", font="big")
     terminal_width = os.get_terminal_size().columns
     for line in zwwac_art.split("\n"):
@@ -30,49 +29,43 @@ def display_menu():
 
 # Kullanıcıdan isim alır
 def get_name():
-    name = input(colored("İsminizi girin: ", 'cyan', attrs=['bold']))
-    return name
+    return input(colored("İsminizi girin: ", 'cyan', attrs=['bold'])).strip()
 
 # Kullanıcıdan renk seçmesini ister
 def get_color():
     colors = ["red", "green", "yellow", "blue", "magenta", "cyan", "white"]
     print(colored("Mevcut renkler: " + ", ".join(colors), 'cyan', attrs=['bold']))
-    color = input(colored("Bir renk seçin: ", 'cyan', attrs=['bold'])).lower()
-    while color not in colors:
+    while True:
+        color = input(colored("Bir renk seçin: ", 'cyan', attrs=['bold'])).strip().lower()
+        if color in colors:
+            return color
         print(colored("Geçersiz renk! Lütfen tekrar seçin.", 'red', attrs=['bold']))
-        color = input(colored("Bir renk seçin: ", 'cyan', attrs=['bold'])).lower()
-    return color
 
 # Kullanıcıdan font seçmesini ister
 def get_font():
     print(colored("Mevcut fontlar: " + ", ".join(FONTS), 'cyan', attrs=['bold']))
-    font = input(colored("Bir font seçin: ", 'cyan', attrs=['bold'])).lower()
-    while font not in FONTS:
+    while True:
+        font = input(colored("Bir font seçin: ", 'cyan', attrs=['bold'])).strip().lower()
+        if font in FONTS:
+            return font
         print(colored("Geçersiz font! Lütfen tekrar seçin.", 'red', attrs=['bold']))
-        font = input(colored("Bir font seçin: ", 'cyan', attrs=['bold'])).lower()
-    return font
 
 # ASCII art oluşturur ve kalıcı olarak dosyaya yazar
 def create_ascii_art(name, color, font):
     ascii_art = pyfiglet.figlet_format(name, font=font)
     colored_ascii_art = colored(ascii_art, color)
-    
     # ASCII art'ı ekrana yazdır
     print(colored_ascii_art)
-    
     # ASCII art'ı dosyaya yazdır
     with open("ascii_art_output.txt", "a") as f:
         f.write(colored_ascii_art + "\n")
 
 def main():
-    clear_terminal()  # Terminali temizler
-    name = ""
-    color = ""
-    font = "standard"
+    clear_terminal()
+    name, color, font = "", "", "standard"
     while True:
         display_menu()
-        choice = input(colored("Bir seçenek girin (1-5): ", 'cyan', attrs=['bold']))
-        
+        choice = input(colored("Bir seçenek girin (1-5): ", 'cyan', attrs=['bold'])).strip()
         if choice == "1":
             name = get_name()
         elif choice == "2":
