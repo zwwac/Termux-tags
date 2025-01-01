@@ -31,6 +31,3 @@ echo 'cat ~/Termux-tags/ascii_art_output.txt' >> ~/.bashrc
 python ascii_art_creator.py
 ```
 
-## nano ~/.bashrc yazdıktan sonra içine şunu yazın
-```sh
-/data/data/com.termux/files/home/Termux-tags/ascii_art_output.txt
