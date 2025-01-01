@@ -11,7 +11,6 @@ FONTS = pyfiglet.FigletFont.getFonts()
 # Terminali temizler ve gerekli mesajı gösterir
 def clear_terminal():
     os.system('clear')
-    # Üst köşede büyük boyutta ASCII art yazısı
     zwac_art = """
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⣶⣶⠖⠀⠀⠲⣶⣶⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⢀⣴⣿⡿⠋⠀⠀⠀⠀⠀⠀⠙⢿⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀
@@ -58,14 +57,20 @@ def get_color():
             return color
         print(colored("Geçersiz renk! Lütfen tekrar seçin.", 'red', attrs=['bold']))
 
-# Kullanıcıdan font seçmesini ister
+# Kullanıcıdan font seçmesini ister ve seçimi onaylar
 def get_font():
-    print(colored("Mevcut fontlar: " + ", ".join(FONTS), 'cyan', attrs=['bold']))
     while True:
+        print(colored("Mevcut fontlar: " + ", ".join(FONTS), 'cyan', attrs=['bold']))
         font = input(colored("Bir font seçin: ", 'cyan', attrs=['bold'])).strip().lower()
         if font in FONTS:
-            return font
-        print(colored("Geçersiz font! Lütfen tekrar seçin.", 'red', attrs=['bold']))
+            # Seçilen fontu göster
+            sample_text = pyfiglet.figlet_format("Örnek Metin", font=font)
+            print(colored(sample_text, 'cyan'))
+            confirm = input(colored("Bu fontu seçmek istiyor musunuz? (E/H): ", 'cyan', attrs=['bold'])).strip().lower()
+            if confirm == 'e':
+                return font
+        else:
+            print(colored("Geçersiz font! Lütfen tekrar seçin.", 'red', attrs=['bold']))
 
 # ASCII art oluşturur ve kalıcı olarak dosyaya yazar
 def create_ascii_art(name, color, font):
@@ -73,13 +78,15 @@ def create_ascii_art(name, color, font):
     colored_ascii_art = colored(ascii_art, color)
     # ASCII art'ı ekrana yazdır
     print(colored_ascii_art)
-    # ASCII art'ı dosyaya yazdır
-    with open("ascii_art_output.txt", "a") as f:
+    # ASCII art'ı dosyaya yazdırmadan önce kontrol et
+    with open("ascii_art_output.txt", "w") as f:
         f.write(colored_ascii_art + "\n")
+    print(colored("ASCII art başarıyla oluşturuldu ve kaydedildi.", 'green', attrs=['bold']))
 
 def main():
     clear_terminal()
     name, color, font = "", "", "standard"
+    ascii_art_created = False
     while True:
         display_menu()
         choice = input(colored("Bir seçenek girin (1-5): ", 'cyan', attrs=['bold'])).strip()
@@ -90,8 +97,11 @@ def main():
         elif choice == "3":
             font = get_font()
         elif choice == "4":
-            if name and color and font:
+            if name and color and font and not ascii_art_created:
                 create_ascii_art(name, color, font)
+                ascii_art_created = True
+            elif ascii_art_created:
+                print(colored("ASCII art zaten oluşturuldu ve kaydedildi. Yeni bir ASCII art oluşturmak için programı yeniden başlatın.", 'red', attrs=['bold']))
             else:
                 print(colored("Lütfen önce isim, renk ve font girin.", 'red', attrs=['bold']))
         elif choice == "5":
@@ -99,9 +109,6 @@ def main():
             break
         else:
             print(colored("Geçersiz seçenek! Lütfen tekrar deneyin.", 'red', attrs=['bold']))
-        # Eğer kullanıcı tekrar font seçmek isterse, mevcut fontu sıfırlayalım
-        if choice == "3":
-            font = "standard"
 
 if __name__ == "__main__":
     main()
