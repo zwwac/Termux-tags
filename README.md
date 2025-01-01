@@ -4,7 +4,7 @@
 Bu proje, kullanıcıya özel isim, renk ve font girerek terminalde ASCII art oluşturan bir Python scriptidir
 
 
-![IMG_20250101_144810](https://github.com/user-attachments/assets/e248e4c8-c61d-4297-a4ac-bf0a85bb83a3)
+![Screenshot_2025_0101_183401](https://github.com/user-attachments/assets/ebe4b6ef-f6e3-444c-97d5-848b10247572)
 
 
 ## Kurulum
